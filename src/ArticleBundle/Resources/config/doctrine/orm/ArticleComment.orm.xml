@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                              http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+	<entity name="ArticleBundle\Model\ArticleComment"
+			table="iron_article_comment"
+			repository-class="ArticleBundle\Repository\DoctrineORMArticleCommentRepository">
+
+		<id name="id" type="integer" column="id">
+			<generator strategy="AUTO"/>
+		</id>
+
+		<field name="createdAt" type="datetime" nullable="false" />
+		<field name="content" type="string" nullable="false" />
+		<field name="notified" type="boolean" nullable="false" />
+
+		<many-to-one target-entity="UserBundle\Model\User" field="user">
+		</many-to-one>
+
+		<many-to-one target-entity="ArticleBundle\Model\Article" field="article" inversed-by="comments">
+			<join-column name="article_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
+		</many-to-one>
+
+	</entity>
+</doctrine-mapping>

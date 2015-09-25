@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+        <service id="iron.article_repository.article.doctrine_orm"
+                 class="ArticleBundle\Repository\DoctrineORMArticleRepository"
+                 factory-service="doctrine.orm.default_entity_manager"
+                 factory-method="getRepository">
+            <argument>ArticleBundle\Model\Article</argument>
+        </service>
+
+        <service id="iron.article_repository.article_comment.doctrine_orm"
+                 class="ArticleBundle\Repository\DoctrineORMArticleCommentRepository"
+                 factory-service="doctrine.orm.default_entity_manager"
+                 factory-method="getRepository">
+            <argument>ArticleBundle\Model\ArticleComment</argument>
+        </service>
+
+        <service id="iron.article_repository.article_votes.doctrine_orm"
+                 class="ArticleBundle\Repository\DoctrineORMArticleVoteRepository"
+                 factory-service="doctrine.orm.default_entity_manager"
+                 factory-method="getRepository">
+            <argument>ArticleBundle\Model\ArticleVote</argument>
+        </service>
+    </services>
+
+</container>
